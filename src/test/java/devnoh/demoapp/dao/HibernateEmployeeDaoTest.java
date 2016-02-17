@@ -79,7 +79,6 @@ public class HibernateEmployeeDaoTest extends AbstractDaoTest {
     @Test
     public void testDelete() {
         logger.debug("testDelete...");
-        //Employee emp = employeeDao.getEmployee(7369);
         employeeDao.deleteEmployee(7369);
         Assert.assertNull(employeeDao.getEmployee(7369));
         List<Employee> emps = employeeDao.getAllEmployees();
