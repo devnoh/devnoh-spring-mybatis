@@ -4,17 +4,7 @@ import devnoh.demoapp.model.*;
 
 import java.util.*;
 
-public interface EmployeeDao  {
-
-    Employee insertEmployee(Employee employee);
-
-    Employee updateEmployee(Employee employee);
-
-    void deleteEmployee(int empNo);
-
-    Employee getEmployee(int empNo);
-
-    List<Employee> getAllEmployees();
+public interface EmployeeDao extends GenericDao<Employee, Integer> {
 
     List<Employee> findEmployeesByDeptNo(int deptNo);
 

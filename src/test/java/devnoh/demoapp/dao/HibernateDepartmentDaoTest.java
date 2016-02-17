@@ -23,19 +23,19 @@ public class HibernateDepartmentDaoTest extends AbstractDaoTest {
     @Test
     public void testGetAll() {
         logger.debug("testGetAll...");
-        List<Department> depts = departmentDao.getAllDepartments();
+        List<Department> depts = departmentDao.getAll();
         Assert.assertEquals(4, depts.size());
     }
 
     @Test
     public void testGet() {
         logger.debug("testGet...");
-        Department dept = departmentDao.getDepartment(10);
+        Department dept = departmentDao.get(10);
         Assert.assertNotNull(dept);
         Assert.assertEquals(10, (long)dept.getDeptNo());
         Assert.assertEquals("ACCOUNTING", dept.getName());
         Assert.assertEquals("NEW YORK", dept.getLocation());
-        Assert.assertNull(departmentDao.getDepartment(50));
+        Assert.assertNull(departmentDao.get(50));
     }
 
     @Test
@@ -45,22 +45,22 @@ public class HibernateDepartmentDaoTest extends AbstractDaoTest {
         dept.setDeptNo(50);
         dept.setName("IT");
         dept.setLocation("CERRITOS");
-        dept = departmentDao.insertDepartment(dept);
+        dept = departmentDao.insert(dept);
         logger.debug(dept);
         Assert.assertTrue(dept.getDeptNo() == 50);
-        List<Department> depts = departmentDao.getAllDepartments();
+        List<Department> depts = departmentDao.getAll();
         Assert.assertEquals(5, depts.size());
     }
 
     @Test
     public void testUpdate() {
         logger.debug("testUpdate...");
-        Department dept = departmentDao.getDepartment(10);
+        Department dept = departmentDao.get(10);
         dept.setName("IT");
         dept.setLocation("CERRITOS");
-        departmentDao.updateDepartment(dept);
+        departmentDao.update(dept);
         logger.debug(dept);
-        Department dept2 = departmentDao.getDepartment(10);
+        Department dept2 = departmentDao.get(10);
         Assert.assertEquals("IT", dept2.getName());
         Assert.assertEquals("CERRITOS", dept2.getLocation());
     }
@@ -68,9 +68,9 @@ public class HibernateDepartmentDaoTest extends AbstractDaoTest {
     @Test
     public void testDelete() {
         logger.debug("testDelete...");
-        departmentDao.deleteDepartment(10);
-        Assert.assertNull(departmentDao.getDepartment(10));
-        List<Department> depts = departmentDao.getAllDepartments();
+        departmentDao.delete(10);
+        Assert.assertNull(departmentDao.get(10));
+        List<Department> depts = departmentDao.getAll();
         Assert.assertEquals(3, depts.size());
     }
 }

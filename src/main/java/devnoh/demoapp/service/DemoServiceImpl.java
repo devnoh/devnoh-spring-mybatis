@@ -23,23 +23,23 @@ public class DemoServiceImpl implements DemoService {
     //
 
     public Department insertDepartment(Department deptartment) {
-        return departmentDao.insertDepartment(deptartment);
+        return departmentDao.insert(deptartment);
     }
 
     public Department updateDepartment(Department deptartment) {
-        return departmentDao.updateDepartment(deptartment);
+        return departmentDao.update(deptartment);
     }
 
     public void deleteDepartment(int deptNo) {
-        departmentDao.deleteDepartment(deptNo);
+        departmentDao.delete(deptNo);
     }
 
     public Department getDepartment(int deptNo) {
-        return departmentDao.getDepartment(deptNo);
+        return departmentDao.get(deptNo);
     }
 
     public List<Department> getAllDepartments() {
-        return departmentDao.getAllDepartments();
+        return departmentDao.getAll();
     }
 
     //
@@ -47,23 +47,23 @@ public class DemoServiceImpl implements DemoService {
     //
 
     public Employee insertEmployee(Employee employee) {
-        return employeeDao.insertEmployee(employee);
+        return employeeDao.insert(employee);
     }
 
     public Employee updateEmployee(Employee employee) {
-        return employeeDao.updateEmployee(employee);
+        return employeeDao.update(employee);
     }
 
     public void deleteEmployee(int empNo) {
-        employeeDao.deleteEmployee(empNo);
+        employeeDao.delete(empNo);
     }
 
     public Employee getEmployee(int empNo) {
-        return employeeDao.getEmployee(empNo);
+        return employeeDao.get(empNo);
     }
 
     public List<Employee> getAllEmployees() {
-        return employeeDao.getAllEmployees();
+        return employeeDao.getAll();
     }
 
     public List<Employee> findEmployeesByDeptNo(int deptNo) {

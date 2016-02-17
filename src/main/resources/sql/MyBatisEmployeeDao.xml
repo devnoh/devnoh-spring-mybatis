@@ -22,26 +22,26 @@
         <result property="location" column="LOC"/>
     </resultMap>
 
-    <insert id="insertEmployee" parameterType="Employee">
+    <insert id="insert" parameterType="Employee">
         INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
         VALUES (#{empNo}, #{name}, #{job}, #{mgrNo}, #{hireDate}, #{salary}, #{commission}, #{department.deptNo})
     </insert>
 
-    <insert id="updateEmployee" parameterType="Employee">
-       UPDATE EMP SET ENAME = #{name}, JOB = #{job}, MGR = #{mgrNo}, HIREDATE = #{hireDate}, SAL = #{salary}, COMM = #{commission}, DEPTNO = #{department.deptNo} WHERE EMPNO = #{empNo}
+    <insert id="update" parameterType="Employee">
+        UPDATE EMP SET ENAME = #{name}, JOB = #{job}, MGR = #{mgrNo}, HIREDATE = #{hireDate}, SAL = #{salary}, COMM = #{commission}, DEPTNO = #{department.deptNo} WHERE EMPNO = #{empNo}
     </insert>
 
-    <insert id="deleteEmployee" parameterType="int">
+    <insert id="delete" parameterType="int">
         DELETE FROM EMP WHERE EMPNO = #{empNo}
     </insert>
 
-    <select id="getEmployee" parameterType="int" resultMap="EmployeeResult">
+    <select id="get" parameterType="int" resultMap="EmployeeResult">
         SELECT E.EMPNO, E.ENAME, E.JOB, E.MGR, E.HIREDATE, E.SAL, E.COMM, D.DEPTNO, D.DNAME, D.LOC
         FROM EMP E LEFT OUTER JOIN DEPT D ON E.DEPTNO = D.DEPTNO
         WHERE E.EMPNO=#{empNo}
     </select>
 
-    <select id="getAllEmployees" resultMap="EmployeeResult">
+    <select id="getAll" resultMap="EmployeeResult">
         SELECT E.EMPNO, E.ENAME, E.JOB, E.MGR, E.HIREDATE, E.SAL, E.COMM, D.DEPTNO, D.DNAME, D.LOC
         FROM EMP E LEFT OUTER JOIN DEPT D ON E.DEPTNO = D.DEPTNO
     </select>

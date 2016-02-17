@@ -73,7 +73,7 @@ public class DemoServiceImplTest {
         logger.debug("testInsertDepartment...");
         Department dept = new Department();
         dept.setDeptNo(10);
-        when(departmentDao.insertDepartment(dept)).thenReturn(dept);
+        when(departmentDao.insert(dept)).thenReturn(dept);
         Assert.assertEquals(demoService.insertDepartment(dept), dept);
     }
 
@@ -82,16 +82,16 @@ public class DemoServiceImplTest {
         logger.debug("testUpdateDepartment...");
         Department dept = new Department();
         dept.setDeptNo(10);
-        when(departmentDao.updateDepartment(dept)).thenReturn(dept);
+        when(departmentDao.update(dept)).thenReturn(dept);
         Assert.assertEquals(demoService.updateDepartment(dept), dept);
     }
 
     @Test
     public void testDeleteDepartment() {
         logger.debug("testDeleteDepartment...");
-        doNothing().when(departmentDao).deleteDepartment(50);
+        doNothing().when(departmentDao).delete(50);
         demoService.deleteDepartment(50);
-        verify(departmentDao, atLeastOnce()).deleteDepartment(50);
+        verify(departmentDao, atLeastOnce()).delete(50);
     }
 
     @Test
@@ -99,16 +99,16 @@ public class DemoServiceImplTest {
         logger.debug("testGetDepartment...");
         Department dept = new Department();
         dept.setDeptNo(10);
-        when(departmentDao.getDepartment(anyInt())).thenReturn(dept);
+        when(departmentDao.get(anyInt())).thenReturn(dept);
         Assert.assertEquals(demoService.getDepartment(dept.getDeptNo()), dept);
     }
 
     @Test
     public void testGetAllDepartments() {
         logger.debug("testGetAllDepartments...");
-        when(departmentDao.getAllDepartments()).thenReturn(departments);
+        when(departmentDao.getAll()).thenReturn(departments);
         Assert.assertEquals(departments, demoService.getAllDepartments());
-        verify(departmentDao, times(1)).getAllDepartments();
+        verify(departmentDao, times(1)).getAll();
     }
 
     @Test
@@ -116,7 +116,7 @@ public class DemoServiceImplTest {
         logger.debug("testInsertEmployee...");
         Employee emp = new Employee();
         emp.setEmpNo(9000);
-        when(employeeDao.insertEmployee(emp)).thenReturn(emp);
+        when(employeeDao.insert(emp)).thenReturn(emp);
         Assert.assertEquals(emp, demoService.insertEmployee(emp));
     }
 
@@ -125,16 +125,16 @@ public class DemoServiceImplTest {
         logger.debug("testUpdateEmployee...");
         Employee emp = new Employee();
         emp.setEmpNo(9000);
-        when(employeeDao.updateEmployee(emp)).thenReturn(emp);
+        when(employeeDao.update(emp)).thenReturn(emp);
         Assert.assertEquals(emp, demoService.updateEmployee(emp));
     }
 
     @Test
     public void testDeleteEmployee() {
         logger.debug("testDeleteEmployee...");
-        doNothing().when(employeeDao).deleteEmployee(9000);
+        doNothing().when(employeeDao).delete(9000);
         demoService.deleteEmployee(9000);
-        verify(employeeDao, atLeastOnce()).deleteEmployee(9000);
+        verify(employeeDao, atLeastOnce()).delete(9000);
     }
 
     @Test
@@ -142,16 +142,16 @@ public class DemoServiceImplTest {
         logger.debug("testGetEmployee...");
         Employee emp = new Employee();
         emp.setEmpNo(9000);
-        when(employeeDao.getEmployee(anyInt())).thenReturn(emp);
+        when(employeeDao.get(anyInt())).thenReturn(emp);
         Assert.assertEquals(emp, demoService.getEmployee(emp.getEmpNo()));
     }
 
     @Test
     public void testGetAllEmployees() {
         logger.debug("testGetAllEmployees...");
-        when(employeeDao.getAllEmployees()).thenReturn(employees);
+        when(employeeDao.getAll()).thenReturn(employees);
         Assert.assertEquals(employees, demoService.getAllEmployees());
-        verify(employeeDao, times(1)).getAllEmployees();
+        verify(employeeDao, times(1)).getAll();
     }
 
     @Test

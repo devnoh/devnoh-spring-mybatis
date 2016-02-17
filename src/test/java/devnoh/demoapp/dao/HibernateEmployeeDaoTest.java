@@ -26,14 +26,14 @@ public class HibernateEmployeeDaoTest extends AbstractDaoTest {
     @Test
     public void testGetAll() {
         logger.debug("testGetAll...");
-        List<Employee> emps = employeeDao.getAllEmployees();
+        List<Employee> emps = employeeDao.getAll();
         Assert.assertEquals(emps.size(), 14);
     }
 
     @Test
     public void testGet() {
         logger.debug("testGet...");
-        Employee emp = employeeDao.getEmployee(7369);
+        Employee emp = employeeDao.get(7369);
         Assert.assertNotNull(emp);
         Assert.assertEquals(7369, (int) emp.getEmpNo());
         Assert.assertEquals("SMITH", emp.getName());
@@ -43,7 +43,7 @@ public class HibernateEmployeeDaoTest extends AbstractDaoTest {
         Assert.assertEquals(800d, emp.getSalary(), 0);
         Assert.assertNull(emp.getCommission());
         Assert.assertEquals(20, (int) emp.getDepartment().getDeptNo());
-        Assert.assertNull(employeeDao.getEmployee(9900));
+        Assert.assertNull(employeeDao.get(9900));
     }
 
     @Test
@@ -54,23 +54,23 @@ public class HibernateEmployeeDaoTest extends AbstractDaoTest {
         emp.setName("SEHWAN");
         emp.setJob("DEVELOPER");
         emp.setSalary(1000d);
-        emp = employeeDao.insertEmployee(emp);
+        emp = employeeDao.insert(emp);
         logger.debug(emp);
         Assert.assertTrue(emp.getEmpNo() == 9001);
-        List<Employee> emps = employeeDao.getAllEmployees();
+        List<Employee> emps = employeeDao.getAll();
         Assert.assertEquals(15, emps.size());
     }
 
     @Test
     public void testUpdate() {
         logger.debug("testUpdate...");
-        Employee emp = employeeDao.getEmployee(7369);
+        Employee emp = employeeDao.get(7369);
         emp.setName("SEHWAN");
         emp.setJob("DEVELOPER");
         emp.setSalary(1000d);
-        employeeDao.updateEmployee(emp);
+        employeeDao.update(emp);
         logger.debug(emp);
-        Employee emp2 = employeeDao.getEmployee(7369);
+        Employee emp2 = employeeDao.get(7369);
         Assert.assertEquals("SEHWAN", emp2.getName());
         Assert.assertEquals("DEVELOPER", emp2.getJob());
         Assert.assertTrue(1000d == emp2.getSalary());
@@ -79,9 +79,9 @@ public class HibernateEmployeeDaoTest extends AbstractDaoTest {
     @Test
     public void testDelete() {
         logger.debug("testDelete...");
-        employeeDao.deleteEmployee(7369);
-        Assert.assertNull(employeeDao.getEmployee(7369));
-        List<Employee> emps = employeeDao.getAllEmployees();
+        employeeDao.delete(7369);
+        Assert.assertNull(employeeDao.get(7369));
+        List<Employee> emps = employeeDao.getAll();
         Assert.assertEquals(13, emps.size());
     }
 

@@ -17,8 +17,8 @@ import java.io.*;
 import java.nio.charset.*;
 import java.sql.*;
 
-//@ContextConfiguration(classes = {MyBatisTestConfig.class})
-@ContextConfiguration({"classpath:spring-context-test.xml"})
+//@ContextConfiguration({"classpath:spring-context-test.xml"})
+@ContextConfiguration(classes = {MyBatisTestConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public abstract class AbstractDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
