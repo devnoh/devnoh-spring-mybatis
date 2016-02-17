@@ -31,7 +31,7 @@
        UPDATE EMP SET ENAME = #{name}, JOB = #{job}, MGR = #{mgrNo}, HIREDATE = #{hireDate}, SAL = #{salary}, COMM = #{commission}, DEPTNO = #{department.deptNo} WHERE EMPNO = #{empNo}
     </insert>
 
-    <insert id="deleteEmployee" parameterType="Employee">
+    <insert id="deleteEmployee" parameterType="int">
         DELETE FROM EMP WHERE EMPNO = #{empNo}
     </insert>
 
