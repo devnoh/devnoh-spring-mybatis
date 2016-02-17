@@ -25,6 +25,33 @@ public class MyBatisConfig {
     private Environment env;
 
     /**
+     * https://commons.apache.org/proper/commons-dbcp/
+     * @return a pooled data source
+     */
+    /*
+    @Bean
+    public DataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.username"));
+        dataSource.setPassword(env.getProperty("jdbc.password"));
+        dataSource.setInitialSize(5);
+        dataSource.setMinIdle(5);
+        dataSource.setMaxIdle(5);
+        dataSource.setMaxTotal(20);
+        dataSource.setMaxWaitMillis(30000);
+        dataSource.setPoolPreparedStatements(true);
+        dataSource.setValidationQuery(env.getProperty("jdbc.testQuery"));
+        dataSource.setTestOnBorrow(true);
+        dataSource.setTestOnReturn(false);
+        dataSource.setTestWhileIdle(true);
+        dataSource.setTimeBetweenEvictionRunsMillis(60000);
+        return dataSource;
+    }
+    */
+
+    /**
      * http://www.mchange.com/projects/c3p0/
      * @return a pooled data source
      */
