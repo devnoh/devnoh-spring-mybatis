@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="devnoh.demoapp.dao.mybatis.MyBatisEmployeeDao">
+
+    <cache/>
+
+    <resultMap id="EmployeeResult" type="Employee">
+        <result property="empNo" column="EMPNO"/>
+        <result property="name" column="ENAME"/>
+        <result property="job" column="JOB"/>
+        <result property="mgrNo" column="MGR"/>
+        <result property="hireDate" column="HIREDATE"/>
+        <result property="salary" column="SAL"/>
+        <result property="commission" column="COMM"/>
+        <association property='department' resultMap='DepartmentResult'/>
+    </resultMap>
+
+    <resultMap id="DepartmentResult" type="Department">
+        <result property="deptNo" column="DEPTNO"/>
+        <result property="name" column="DNAME"/>
+        <result property="location" column="LOC"/>
+    </resultMap>
+
+    <insert id="insertEmployee" parameterType="Employee">
+        INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+        VALUES (#{empNo}, #{name}, #{job}, #{mgrNo}, #{hireDate}, #{salary}, #{commission}, #{department.deptNo})
+    </insert>
+
+    <insert id="updateEmployee" parameterType="Employee">
+       UPDATE EMP SET ENAME = #{name}, JOB = #{job}, MGR = #{mgrNo}, HIREDATE = #{hireDate}, SAL = #{salary}, COMM = #{commission}, DEPTNO = #{department.deptNo} WHERE EMPNO = #{empNo}
+    </insert>
+
+    <insert id="deleteEmployee" parameterType="Employee">
+        DELETE FROM EMP WHERE EMPNO = #{empNo}
+    </insert>
+
+    <select id="getEmployee" parameterType="int" resultMap="EmployeeResult">
+        SELECT E.EMPNO, E.ENAME, E.JOB, E.MGR, E.HIREDATE, E.SAL, E.COMM, D.DEPTNO, D.DNAME, D.LOC
+        FROM EMP E LEFT OUTER JOIN DEPT D ON E.DEPTNO = D.DEPTNO
+        WHERE E.EMPNO=#{empNo}
+    </select>
+
+    <select id="getAllEmployees" resultMap="EmployeeResult">
+        SELECT E.EMPNO, E.ENAME, E.JOB, E.MGR, E.HIREDATE, E.SAL, E.COMM, D.DEPTNO, D.DNAME, D.LOC
+        FROM EMP E LEFT OUTER JOIN DEPT D ON E.DEPTNO = D.DEPTNO
+    </select>
+
+    <select id="findEmployeesByDeptNo" parameterType="int" resultMap="EmployeeResult">
+        SELECT E.EMPNO, E.ENAME, E.JOB, E.MGR, E.HIREDATE, E.SAL, E.COMM, D.DEPTNO, D.DNAME, D.LOC
+        FROM EMP E LEFT OUTER JOIN DEPT D ON E.DEPTNO = D.DEPTNO
+        WHERE E.DEPTNO = #{deptNo}
+    </select>
+
+</mapper>

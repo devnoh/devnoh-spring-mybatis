@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="devnoh.demoapp.dao.mybatis.MyBatisDepartmentDao">
+
+    <cache/>
+
+    <resultMap id="DepartmentResult" type="Department">
+        <result property="deptNo" column="DEPTNO"/>
+        <result property="name" column="DNAME"/>
+        <result property="location" column="LOC"/>
+        <collection property='employees' ofType='Employee' resultMap='EmployeeResult' columnPrefix='EMP_' />
+    </resultMap>
+
+    <resultMap id="EmployeeResult" type="Employee">
+        <result property="empNo" column="EMPNO"/>
+        <result property="name" column="ENAME"/>
+        <result property="job" column="JOB"/>
+        <result property="mgrNo" column="MGR"/>
+        <result property="hireDate" column="HIREDATE"/>
+        <result property="salary" column="SAL"/>
+        <result property="commission" column="COMM"/>
+    </resultMap>
+
+    <insert id="insertDepartment" parameterType="Department">
+        INSERT INTO DEPT (DEPTNO, DNAME, LOC)
+        VALUES (#{deptNo}, #{name}, #{location})
+    </insert>
+
+    <insert id="updateDepartment" parameterType="Department">
+       UPDATE DEPT SET DNAME = #{name}, LOC = #{location} WHERE DEPTNO = #{deptNo}
+    </insert>
+
+    <insert id="deleteDepartment" parameterType="int">
+        DELETE FROM DEPT WHERE DEPTNO = #{deptNo}
+    </insert>
+
+    <select id="getDepartment" parameterType="int" resultMap="DepartmentResult">
+        SELECT D.DEPTNO, D.DNAME, D.LOC, E.EMPNO AS EMP_EMPNO, E.ENAME AS EMP_ENAME, E.JOB AS EMP_JOB, E.MGR AS EMP_MGR, E.HIREDATE AS EMP_HIREDATE, E.SAL AS EMP_SAL, E.COMM AS EMP_COMM
+        FROM DEPT D LEFT OUTER JOIN EMP E ON D.DEPTNO = E.DEPTNO
+        WHERE D.DEPTNO=#{deptNo}
+    </select>
+
+    <select id="getAllDepartments" resultMap="DepartmentResult">
+        SELECT D.DEPTNO, D.DNAME, D.LOC, E.EMPNO AS EMP_EMPNO, E.ENAME AS EMP_ENAME, E.JOB AS EMP_JOB, E.MGR AS EMP_MGR, E.HIREDATE AS EMP_HIREDATE, E.SAL AS EMP_SAL, E.COMM AS EMP_COMM
+        FROM DEPT D LEFT OUTER JOIN EMP E ON D.DEPTNO = E.DEPTNO
+    </select>
+
+</mapper>

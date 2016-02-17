@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <typeAlias type='devnoh.demoapp.model.Department' alias='Department'/>
+        <typeAlias type='devnoh.demoapp.model.Employee' alias='Employee'/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="sql/MyBatisDepartmentDao.xml"/>
+        <mapper resource="sql/MyBatisEmployeeDao.xml"/>
+    </mappers>
+</configuration>
