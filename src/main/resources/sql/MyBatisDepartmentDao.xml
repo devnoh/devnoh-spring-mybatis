@@ -28,7 +28,7 @@
     </insert>
 
     <insert id="update" parameterType="Department">
-        UPDATE DEPT SET DNAME = #{name}, LOC = #{location} WHERE DEPTNO = #{deptNo}
+       UPDATE DEPT SET DNAME = #{name}, LOC = #{location} WHERE DEPTNO = #{deptNo}
     </insert>
 
     <insert id="delete" parameterType="int">
@@ -44,6 +44,7 @@
     <select id="getAll" resultMap="DepartmentResult">
         SELECT D.DEPTNO, D.DNAME, D.LOC, E.EMPNO AS EMP_EMPNO, E.ENAME AS EMP_ENAME, E.JOB AS EMP_JOB, E.MGR AS EMP_MGR, E.HIREDATE AS EMP_HIREDATE, E.SAL AS EMP_SAL, E.COMM AS EMP_COMM
         FROM DEPT D LEFT OUTER JOIN EMP E ON D.DEPTNO = E.DEPTNO
+        ORDER BY D.DNAME ASC
     </select>
 
 </mapper>
