@@ -1,9 +1,13 @@
-# spring-mybatis
+# devnoh-spring-mybatis
 Building a Web Application with Spring 4 and MyBatis 3
 
 * Spring 4 + MyBatis 3 + c3p0 (or dbcp) + Oracle
 * Annotation-based Configuration
 * Testing with JUnit 4 + Mockito
+
+## Build Status
+
+[![Build Status](https://travis-ci.org/devnoh/devnoh-spring-mybatis.svg?branch=master)](https://travis-ci.org/devnoh/devnoh-spring-mybatis)
 
 Dependencies
 ------------
